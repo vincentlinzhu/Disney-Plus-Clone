@@ -96,7 +96,33 @@ const Header = (props) => {
           <SignOut>
             <UserImg src={userPhoto} alt={userName} />
             <DropDown>
-              <span onClick={handleAuth}>Sign Out</span>
+              <a href="/home">
+                <img src="/images/home-icon.svg" alt="HOME" />
+                <span>HOME</span>
+              </a>
+              <a>
+                <img src="/images/search-icon.svg" alt="SEARCH" />
+                <span>SEARCH</span>
+              </a>
+              <a>
+                <img src="/images/watchlist-icon.svg" alt="WATCHLIST" />
+                <span>WATCHLIST</span>
+              </a>
+              <a>
+                <img src="/images/original-icon.svg" alt="ORIGINALS" />
+                <span>ORIGINALS</span>
+              </a>
+              <a>
+                <img src="/images/movie-icon.svg" alt="MOVIES" />
+                <span>MOVIES</span>
+              </a>
+              <a>
+                <img src="/images/series-icon.svg" alt="SERIES" />
+                <span>SERIES</span>
+              </a>
+              <div>
+                <span onClick={handleAuth}>Sign Out</span>
+              </div>
             </DropDown>
           </SignOut>
         </>
@@ -236,26 +262,63 @@ const DropDown = styled.div`
   border-radius: 4px;
   box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 15px;
+  line-height: 30px;
   letter-spacing: 3px;
   text-align: center;
-  width: 110px;
+  width: 140px;
   opacity: 0;
-  &:hover {
-    background-color: #f9f9f9;
-    color: #000;
-    border-color: #000;
+
+  div {
+    margin-bottom: 4px;
+    span {
+      color: rgb(249, 249, 249);
+      font-size: 15px;
+      letter-spacing: 1.42px;
+      line-height: 1.08;
+      padding: 2px 0px 0px 5px;
+      white-space: nowrap;
+      position: relative;
+      &:before {
+        background-color: rgb(249, 249, 249);
+        border-radius: 0px 0px 4px 4px;
+        bottom: -6px;
+        content: "";
+        height: 2px;
+        left: 0px;
+        opacity: 0;
+        position: absolute;
+        right: 0px;
+        transform-origin: left center;
+        transform: scaleX(0);
+        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+        visibility: hidden;
+        width: auto;
+      }
+    }
+    &:hover {
+      span:before {
+        transform: scaleX(1);
+        visibility: visible;
+        opacity: 1 !important;
+      }
+    }
   }
 `;
 
 const SignOut = styled.div`
   position: relative;
+  flex-flow: column nowrap;
+  height: 100%;
+  justify-content: flex-end;
+  margin: 0px;
+  padding: 0px;
   height: 55px;
   width: 55px;
   display: flex;
   cursor: pointer;
   align-items: center;
-  justify-content: center;
+
   ${UserImg} {
     border-radius: 50%;
     width: 100%;
@@ -265,6 +328,58 @@ const SignOut = styled.div`
     ${DropDown} {
       opacity: 1;
       transition-duration: 1s;
+
+      a {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto;
+        padding: 8px 5px 10px;
+
+        img {
+          height: 20px;
+          min-width: 20px;
+          width: 20px;
+          z-index: auto;
+        }
+        span {
+          color: rgb(249, 249, 249);
+          font-size: 13px;
+          letter-spacing: 1.42px;
+          line-height: 1.08;
+          padding: 2px 0px 0px 5px;
+          white-space: nowrap;
+          position: relative;
+          &:before {
+            background-color: rgb(249, 249, 249);
+            border-radius: 0px 0px 4px 4px;
+            bottom: -6px;
+            content: "";
+            height: 2px;
+            left: 0px;
+            opacity: 0;
+            position: absolute;
+            right: 0px;
+            transform-origin: left center;
+            transform: scaleX(0);
+            transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+            visibility: hidden;
+            width: auto;
+          }
+        }
+
+        &:hover {
+          span:before {
+            transform: scaleX(1);
+            visibility: visible;
+            opacity: 1 !important;
+          }
+        }
+
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
     }
   }
 `;
